@@ -40,3 +40,13 @@ The basic software we expect to implement contains the above docker image scan a
 - https://okrieg.github.io/EC500/PROJECTS/2016/sastry.html
 - https://www.nist.gov/software-quality-group/national-software-reference-library-nsrl
 - http://roussev.net/sdhash/sdhash.html
+
+
+## Comments
+
+
+Good proposal. On what infrastructure do you plan to implement the project? Please also think about the following questions: 
+
+
+* What attack models do you handle? - It may be worthwhile to determine this beforehand 
+* How will you prove that your design works? - determine test cases and their expected outcome.
