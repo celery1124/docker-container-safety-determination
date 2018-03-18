@@ -1,3 +1,6 @@
+# tested on Ubuntu 14.04, a cloud9 container
+# Python 2.7 is supported
+
 import fuzzyhashlib
 from fuzzyhashlib import libssdeep_wrapper
 from fuzzyhashlib import sdhash_wrapper
