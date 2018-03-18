@@ -23,13 +23,19 @@ def sdhash_compare_files(_in_1, _in_2):
     sdbf_2 = sdbf_class.sdbf(_in_2, 0)
     return sdbf_1.compare(sdbf_2, 0)
 
-s1 = "../proposal.md"
-s2 = "Also called fuzzy hashes, CTPH can match inputs that have homologies."
-s3 = "AlSo Called fuzzy hashes, CTPH can match inputs that have homologies."
 
-print(ssdeep_get(s2))
-print(sdhash_get_from_file(s1))
 
-print(ssdeep_compare(s2, s3))
-print(sdhash_compare_files(s1, s1))
+def test():
+    s1 = "../proposal.md"
+    s2 = "Also called fuzzy hashes, CTPH can match inputs that have homologies."
+    s3 = "AlSo Called fuzzy hashes, CTPH can match inputs that have homologies."
+    print(ssdeep_get(s2))
+    print(sdhash_get_from_file(s1))
+    
+    print(ssdeep_compare(s2, s3))
+    print(sdhash_compare_files(s1, s1))
+
+if __name__ == "__main__":
+    test()
+
 
