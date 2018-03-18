@@ -3,7 +3,6 @@
 
 import fuzzyhashlib
 from fuzzyhashlib import libssdeep_wrapper
-from fuzzyhashlib import sdhash_wrapper
 import sdbf_class
 
 # _in: the string to be calculate
