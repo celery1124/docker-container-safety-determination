@@ -12,7 +12,7 @@ http:
 notifications:
     endpoints:
         - name: alistener
-          url: http://localhost:5001/check_image
+          url: http://127.0.0.1:5001/check_image
           headers:
             Authorization: [Bearer ]
           timeout: 500ms
