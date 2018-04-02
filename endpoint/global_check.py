@@ -8,20 +8,29 @@ CONTENT_SUSPICIOUS = 2
 
 files_sdhashs = connectMongo()
 
-def local_process_files(_file_paths_list):
+
+def global_process_files(_file_paths_list):
     num_all_files = len(_file_paths_list)
-    num_good_files = 0
+    num_bad_files = 0
     suspicious_file_paths_list = []
     for file_path in _file_paths_list:
         head, file_name_with_ext = os.path.split(file_path) # with ext
         sdhash = sdhash_get_from_file(file_path)
         if global_check_file(file_name_with_ext, sdhash, file_path) == CONTENT_GOOD:
-            num_good_files += 1
+            print("One file passed global test")
         else:
             suspicious_file_paths_list.append(file_path)
-    return suspicious_file_paths_list
+            num_bad_files += 1
+    return num_bad_files, suspicious_file_paths_list
             
-
+def compare_sdhash_values(_in1, _in2):
+    _med1 = _in1[_in1.find(":sha1:")]
+    _med2 = _in1[_in2.find(":sha1:")]
+    return _med1 == _med2
+    
+    
+    
+    
 def global_check_file(file_name_with_ext, sdhash, file_path):
     record = files_sdhashs.find_one({"file": file_name_with_ext})
     if record == None:
@@ -37,7 +46,7 @@ def global_check_file(file_name_with_ext, sdhash, file_path):
     
     num_sdhashs = int(record["num_sdhashs"])
     for i in range(0, num_sdhashs):
-        if sdhash == record["sdhash" + str(i)]:
+        if compare_sdhash_values(sdhash, record["sdhash" + str(i)]):
             return CONTENT_GOOD
     # virus file
     if not virus_check_file(file_path):
@@ -49,5 +58,14 @@ def global_check_file(file_name_with_ext, sdhash, file_path):
     return CONTENT_GOOD
 
 
+def test():
+    test_files = ["./proposal.md", "./test/test1.md", "./test/test1/test1.md", "./test/test1/test2.md", "./test/test2/test1.md"]
+    suspicious_file_paths_list = global_process_files(test_files)
+    
+
+
+
+if __name__ == "__main__":
+    test()
 
 
