@@ -39,3 +39,10 @@ Connect a remote MongoDB: `mongo --host 34.233.78.56`
 
 
 Run `sudo python -m pip install pymongo`
+
+
+### Create db and collection
+
+
+- Create db: `use sdhash_db`
+- Create collection: `db.createCollection("good_files")`
