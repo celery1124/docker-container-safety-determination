@@ -13,7 +13,7 @@ $ sudo freshclam
 $ clamscan -r --no-summary [dir]
 ```
 -r recursively  
---no-summary emit summary output  
+--no-summary omit summary output  
 
 
 ## Python interface
