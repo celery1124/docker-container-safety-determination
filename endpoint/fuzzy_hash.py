@@ -25,6 +25,11 @@ def sdhash_compare_files(_in_1, _in_2):
     sdbf_2 = sdbf_class.sdbf(_in_2, 0)
     return sdbf_1.compare(sdbf_2, 0)
     
+# two input args are original file paths to be compared
+def sdhash_compare(_in_1, _in_2):
+    sdbf_1 = sdbf_class.sdbf(_in_1, 0)
+    sdbf_2 = sdbf_class.sdbf(_in_2, 0)
+    return sdbf_1.compare(sdbf_2, 0)
 
 def test():
     s1 = "../proposal.md"
