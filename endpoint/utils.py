@@ -1,7 +1,19 @@
 import subprocess
 
-def get_image_name():
-    pass
+def get_image_name(js):
+    names = []
+    for event in js.['events']:
+        if even['action'] == 'push':
+            repo = event['target']['repository']
+            url = event["target"]["url"]
+            tag = event['target']['tag']
+            ip, port = get_registry_url(url)
+
+def get_registry_url(link):
+    # to-do
+    ip = ''
+    port = ''
+    return ip, port
 
 def pull_image(imagename):
     print('pulling image.....')
@@ -17,5 +29,5 @@ def test_pull_image(imagename):
     pull_image(imagename)
 
 if __name__ == '__main__':
-    imagename = ''
+    imagename = 'my-ubuntu'
     test_pull_image(imagename)
