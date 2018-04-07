@@ -2,7 +2,7 @@ import subprocess
 
 def get_image_name(js):
     names = []
-    for event in js.['events']:
+    for event in js['events']:
         if even['action'] == 'push':
             repo = event['target']['repository']
             url = event["target"]["url"]
