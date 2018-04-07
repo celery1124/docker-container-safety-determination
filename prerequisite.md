@@ -83,6 +83,6 @@ sudo docker run -d --restart=always --name registry -p 5000:5000 -v 'pwd'/config
 ### Push images to registry
 
 
-1. Start local flask server
+1. Start local flask server in `endpoint` directory with `python endpoint.py`
 2. Push images to the registry like `sudo docker push localhost:5000/my-container`
 
