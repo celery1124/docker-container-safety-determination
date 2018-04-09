@@ -15,8 +15,26 @@ $ clamscan -r --no-summary [dir]
 -r recursively  
 --no-summary omit summary output  
 
+## Python module
+1. install pyclamd 
+```shell
+$ sudo pip install pyclamd
+```
+
+2. install and enable clamd 
+```shell
+$ sudo apt-get install clamav-daemon clamav-freshclam clamav-unofficial-sigs
+$ sudo freshclam
+$ sudo service clamav-daemon start
+```
 
 ## Python interface
+```python
+from scan import clamav
+cd = clamav()
+cd.scan_file(filname)
+cd.scan_dir(directory)
+```
 1. scan directory
 // input directory
 // output dictionary {'blacklist':listofbadfiles, 'whitelist':listofgoodfiles}
