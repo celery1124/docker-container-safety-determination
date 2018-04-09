@@ -25,7 +25,7 @@ def global_process_files(_file_paths_list):
             
 def compare_sdhash_values(_in1, _in2):
     _med1 = _in1[_in1.find(":sha1:")]
-    _med2 = _in1[_in2.find(":sha1:")]
+    _med2 = _in2[_in2.find(":sha1:")]
     return _med1 == _med2
     
     
