@@ -21,8 +21,10 @@ def check_image():
         file_lst = []
         for root, dirs, files in os.walk('./test'):
             for name in files:
-                print(os.path.join(root, name))
-                file_lst.append(os.path.join(root, name))
+		relative_path=os.path.join(root, name)
+		abs_path=os.path.abspath(relative_path)
+                print(abs_path)
+                file_lst.append(abs_path)
         num_bad_files, suspicious_file_paths_list = global_check.global_process_files(file_lst)
         print('-------------------')
         print('num_bad_files: %d' %(num_bad_files))
