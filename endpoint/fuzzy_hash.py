@@ -5,10 +5,6 @@ import fuzzyhashlib
 from fuzzyhashlib import libssdeep_wrapper
 import sdbf_class
 import os
->>> statinfo = os.stat('somefile.txt')
->>> statinfo
-(33188, 422511L, 769L, 1, 1032, 100, 926L, 1105022698,1105022732, 1105022732)
->>> statinfo.st_size
 
 # _in: the string to be calculate
 def ssdeep_get(_in):
@@ -22,9 +18,11 @@ def ssdeep_compare(_in_1, _in_2):
 
 # _in: file path, get the sdhash value from the file
 def sdhash_get_from_file(_in):
+    statinfo = os.stat(_in)
     if statinfo.st_size <= 1024:
         return -1
-    return sdbf_class.sdbf(_in, 0).to_string()
+    _in1 = sdbf_class.sdbf(_in, 0).to_string()
+    return _in1[_in1.find(":sha1:")]
 
 # two input args are original file paths to be compared
 def sdhash_compare_files(_in_1, _in_2):

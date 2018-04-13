@@ -1,22 +1,39 @@
 #!flask/bin/python
 from flask import Flask, request
+import time
 import json
 import utils
-from flask_cors import CORS
+import os
+import global_check
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 
 @app.route('/check_image', methods=['POST'])
 def check_image():
     data = json.loads(request.data)
     print(data)
-    print('success')
-    return 'Done', 200
+    paths = utils.get_image_name(data)
+    for p in paths:
+        utils.pull_image(p)
+        utils.save_image(p)
+	#time.sleep(2)
+        utils.untar_image(p)
+
+        file_lst = []
+        for root, dirs, files in os.walk('./test'):
+            for name in files:
+                print(os.path.join(root, name))
+                file_lst.append(os.path.join(root, name))
+        num_bad_files, suspicious_file_paths_list = global_check.global_process_files(file_lst)
+        print('-------------------')
+        print('num_bad_files: %d' %(num_bad_files))
+        print('suspicious_file_paths_list: %s' %(suspicious_file_paths_list))
+    return 'Done'
 
 @app.route('/')
 def index():
     return 'welcome'
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=True, host='0.0.0.0', port=5000)

@@ -21,15 +21,11 @@ def global_process_files(_file_paths_list):
         else:
             suspicious_file_paths_list.append(file_path)
             num_bad_files += 1
+            print("One file may be virus")
     return num_bad_files, suspicious_file_paths_list
             
 def compare_sdhash_values(_in1, _in2):
-    _med1 = _in1[_in1.find(":sha1:")]
-    _med2 = _in2[_in2.find(":sha1:")]
-    return _med1 == _med2
-    
-    
-    
+    return _in1 == _in2
     
 def global_check_file(file_name_with_ext, sdhash, file_path):
     record = files_sdhashs.find_one({"file": file_name_with_ext})
@@ -61,8 +57,8 @@ def global_check_file(file_name_with_ext, sdhash, file_path):
 
 
 def test():
-    test_files = ["./proposal.md", "./test/test1.md", "./test/test1/test1.md", "./test/test1/test2.md", "./test/test2/test1.md"]
-    suspicious_file_paths_list = global_process_files(test_files)
+    test_files = ["/home/ubuntu/workspace/container-safety-determination/proposal.md", "/home/ubuntu/workspace/container-safety-determination/test/test1.md", "/home/ubuntu/workspace/container-safety-determination/test/test1/test1.md", "/home/ubuntu/workspace/container-safety-determination/test/test1/test2.md", "/home/ubuntu/workspace/container-safety-determination/test/test2/test1.md"]
+    num, suspicious_file_paths_list = global_process_files(test_files)
     
 
 
