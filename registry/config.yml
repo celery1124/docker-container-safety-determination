@@ -12,7 +12,9 @@ http:
 notifications:
     endpoints:
         - name: alistener
-          url: http://172.17.0.1:5001/check_image
-          timeout: 5000ms
+          url: http://159.65.238.188:5000/check_image
+          headers:
+            Authorization: [Bearer ]
+          timeout: 500ms
           threshold: 5
-          backoff: 10s
+          backoff: 1s
