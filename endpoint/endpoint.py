@@ -7,7 +7,6 @@ import os
 import global_check
 
 app = Flask(__name__)
-#CORS(app)
 
 @app.route('/check_image', methods=['POST'])
 def check_image():
@@ -17,7 +16,6 @@ def check_image():
     for p in paths:
         utils.pull_image(p)
         utils.save_image(p)
-	#time.sleep(2)
         utils.untar_image(p)
 
         file_lst = []
