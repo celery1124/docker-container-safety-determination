@@ -39,4 +39,8 @@ def untar_image(p):
 	print('untaring image....')
 	cmd=['tar', '-xvf', 'test.tar', '-C', 'test/']
 	sub.call(cmd, stdout=sub.PIPE, stderr=sub.PIPE)
-#	print(s.communicate())
+	for root, dirs, files in os.walk('./test'):
+		for name in files:
+			if name.endswith('.tar'):
+				untar_layer=['tar', '-xvf', os.path.join(root, name), '-C', 'test/']
+				sub.call(untar_layer, stdout=sub.PIPE, stderr=sub.PIPE)
