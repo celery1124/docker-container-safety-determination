@@ -17,12 +17,13 @@ Add configurate file to the client host to connect to insecure private registry.
 ```shell
 $ sudo vim /etc/docker/daemon.json
 ```
-add  
+add below to the configuration file  
 ```python
 {
 "insecure-registries": ["ip:port"]
 }
 ```
+restart docker daemon  
 ```shell
 $ sudo service docker stop
 $ dockerd &
