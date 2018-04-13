@@ -17,7 +17,8 @@ def ssdeep_compare(_in_1, _in_2):
 
 # _in: file path, get the sdhash value from the file
 def sdhash_get_from_file(_in):
-    return sdbf_class.sdbf(_in, 0).to_string()
+    _in1 = sdbf_class.sdbf(_in, 0).to_string()
+    return _in1[_in1.find(":sha1:")]
 
 # two input args are original file paths to be compared
 def sdhash_compare_files(_in_1, _in_2):
