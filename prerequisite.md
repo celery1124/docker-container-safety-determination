@@ -54,13 +54,32 @@ Run `sudo python -m pip install pymongo`
 ### Installation
 
 
-Test on a Ubuntu 16.04 virtual machine
+Test on a Ubuntu 16.04 virtual machine.
 
 
 <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
 
 
-### Create the registry
+Install `docker-compose` according to <https://docs.docker.com/compose/install/#install-compose>
+
+
+### Launch Registry
+
+
+1. `cd registry/`
+2. `docker-compose up`
+
+### Launch Endpoint
+
+
+1. `cd endpoint`
+2. `python endpoint.py`
+
+
+### Other way to launch
+
+
+#### Create the registry
 
 
 In the `registry` directory, run following command to create a registry. Here we bind port 5000 on localhost to port 5000 in container. 
@@ -71,7 +90,7 @@ sudo docker run -d --restart=always --name registry -p 5000:5000 -v 'pwd'/config
 ```
 
 
-### Forward requests
+#### Forward requests
 
 
 1. First, enable firewall on host with `sudo iptables -A INPUT -i docker0 -j ACCEPT`
@@ -80,18 +99,8 @@ sudo docker run -d --restart=always --name registry -p 5000:5000 -v 'pwd'/config
 4. Use `ipLocal:portA` for requests inside container
 
 
-### Push images to registry
+#### Push images to registry
 
 
 1. Start local flask server in `endpoint` directory with `python endpoint.py`
 2. Push images to the registry like `sudo docker push localhost:5000/my-container`
-
-## Launch Registry
-
-1. `cd registry/`
-2. `docker-compose up`
-
-## Launch Endpoint
-
-1. `cd endpoint`
-2. `python endpoint.py`
