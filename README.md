@@ -99,3 +99,9 @@ $ docker tag image_name:tag 159.65.238.188:5001/container_name
 $ docker push 159.65.238.188:5001/container_name
 ```
 
+### Docker save image
+
+
+```shell
+$ docker save -o a.tar container_name:version_tag
+```
