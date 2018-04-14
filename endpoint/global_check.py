@@ -1,5 +1,5 @@
 from fuzzy_hash import sdhash_get_from_file
-from virus_check import virus_check_file # take file path, return True for ok, False for virus
+from virus_check import clamav # take file path, return True for ok, False for virus
 import os
 from mongo_connect import connectMongo
 
@@ -8,6 +8,11 @@ CONTENT_SUSPICIOUS = 2
 
 files_sdhashs = connectMongo()
 
+md = clamav();
+
+def virus_check_file(file_path):
+	ret = md.scan_file(file_path)
+	return ret
 
 def global_process_files(_file_paths_list):
     num_all_files = len(_file_paths_list)
