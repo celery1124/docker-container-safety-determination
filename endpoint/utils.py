@@ -1,5 +1,5 @@
 import subprocess as sub
-
+import os
 def get_image_name(js):
 	pushed = []
 	for event in js['events']:
@@ -25,6 +25,7 @@ def pull_image(p):
 def save_image(p):
 	print('saving image...')
 	cmd=['docker', 'save', '-o', 'test.tar', p]
+	print(cmd)
 	s=sub.call(cmd, stdout=sub.PIPE, stderr=sub.PIPE)
 #	print(s.communicate())
 
@@ -38,5 +39,11 @@ def export_image(p):
 def untar_image(p):
 	print('untaring image....')
 	cmd=['tar', '-xvf', 'test.tar', '-C', 'test/']
+	print(cmd)
 	sub.call(cmd, stdout=sub.PIPE, stderr=sub.PIPE)
-#	print(s.communicate())
+	for root, dirs, files in os.walk('./test'):
+		for name in files:
+			if name.endswith('.tar'):
+				untar_layer=['tar', '-xvf', os.path.join(root, name), '-C', 'test/']
+				print(untar_layer)
+				sub.call(untar_layer, stdout=sub.PIPE, stderr=sub.PIPE)

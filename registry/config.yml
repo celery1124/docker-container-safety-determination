@@ -12,9 +12,9 @@ http:
 notifications:
     endpoints:
         - name: alistener
-          url: http://159.65.238.188:5000/check_image
+          url: http://159.65.238.188:5005/check_image
           headers:
             Authorization: [Bearer ]
           timeout: 500000ms
-          threshold: 1
+          threshold: 5
           backoff: 1s

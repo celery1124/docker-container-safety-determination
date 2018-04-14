@@ -4,7 +4,7 @@
 ### Installation
 
 
-`sudo python -m pip install fuzzyhashlib`
+`$ sudo python -m pip install fuzzyhashlib`
 
 
 ## MongoDB
@@ -16,10 +16,10 @@
 run following command:
 
 
-1. `sudo apt-get install -y mongodb-org`
-2. `cd ~; mkdir data`
-3. `echo 'mongod --bind_ip=$IP --dbpath=data --nojournal' > mongod`
-4. `chmod a+x mongod`
+1. `$ sudo apt-get install -y mongodb-org`
+2. `$ cd ~; mkdir data`
+3. `$ echo 'mongod --bind_ip=$IP --dbpath=data --nojournal' > mongod`
+4. `$ chmod a+x mongod`
 
 
 ### Run service
@@ -44,6 +44,8 @@ Run `sudo python -m pip install pymongo`
 ### Create db and collection
 
 
+In mongo shell,
+
 - Create db: `use sdhash_db`
 - Create collection: `db.createCollection("good_files")`
 
@@ -54,35 +56,79 @@ Run `sudo python -m pip install pymongo`
 ### Installation
 
 
-Test on a Ubuntu 16.04 virtual machine
+Test on a Ubuntu 16.04 virtual machine.
 
 
 <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
 
 
-### Create the registry
+Install `docker-compose` according to <https://docs.docker.com/compose/install/#install-compose>
 
 
-In the `registry` directory, run following command to create a registry. Here we bind port 5000 on localhost to port 5000 in container. 
+### Enable HTTP request
+
+
+Add configuration file to the server host to connect to insecure private registry.  
+
+
+```shell
+$ sudo vim /etc/docker/daemon.json
+```
+
+
+Add below to the configuration file::  
 
 
 ```
-sudo docker run -d --restart=always --name registry -p 5000:5000 -v 'pwd'/config.yml:/etc/docker/registry/config.yml registry:2
+{
+"insecure-registries": ["ip:port"]
+}
 ```
 
 
-### Forward requests
+Restart docker daemon: 
 
 
-1. First, enable firewall on host with `sudo iptables -A INPUT -i docker0 -j ACCEPT`
-2. Bind local flask server on `0.0.0.0:portA`
-3. Use `ip addr show docker0` to check the ip address `ipLocal` for the host inside container
-4. Use `ipLocal:portA` for requests inside container
+```shell
+$ sudo service docker stop
+$ dockerd &
+```
 
 
-### Push images to registry
+### Launch Registry
 
 
-1. Start local flask server in `endpoint` directory with `python endpoint.py`
-2. Push images to the registry like `sudo docker push localhost:5000/my-container`
+1. `cd registry/`
+2. `docker-compose up`
 
+
+### Launch Endpoint
+
+
+1. `cd endpoint`
+2. `python endpoint.py`
+
+
+## ClamAV
+
+
+### Installation
+
+```shell
+$ sudo apt-get install clamAV clamav-daemon
+```
+
+
+### Run
+
+
+1. Update clamAV DB: `sudo freshclam`
+2. Start clamAV: `sudo service clamav-daemon start`
+
+
+### pyclamd
+
+
+```shell
+$ sudo pip install pyclamd
+```

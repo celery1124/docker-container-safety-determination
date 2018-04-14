@@ -21,8 +21,8 @@ def check_image():
         file_lst = []
         for root, dirs, files in os.walk('./test'):
             for name in files:
-		relative_path=os.path.join(root, name)
-		abs_path=os.path.abspath(relative_path)
+                relative_path=os.path.join(root, name)
+                abs_path=os.path.abspath(relative_path)
                 print(abs_path)
                 file_lst.append(abs_path)
         num_bad_files, suspicious_file_paths_list = global_check.global_process_files(file_lst)
@@ -36,4 +36,4 @@ def index():
     return 'welcome'
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5005)
