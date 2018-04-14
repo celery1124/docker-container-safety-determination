@@ -19,8 +19,10 @@ def ssdeep_compare(_in_1, _in_2):
 # _in: file path, get the sdhash value from the file
 def sdhash_get_from_file(_in):
     statinfo = os.stat(_in)
-    if statinfo.st_size <= 1024:
-        return -1
+    # sdhash cannot deal with file smaller than 512
+    if statinfo.st_size <= 512 + 50:
+        with open(_in) as f:
+            return f.read()
     _in1 = sdbf_class.sdbf(_in, 0).to_string()
     return _in1[_in1.find(":sha1:")]
 

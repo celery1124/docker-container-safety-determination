@@ -34,11 +34,11 @@ def compare_sdhash_values(_in1, _in2):
     
 def global_check_file(file_name_with_ext, sdhash, file_path):
     record = files_sdhashs.find_one({"file": file_name_with_ext})
-    if sdhash == -1:
-        if not virus_check_file(file_path):
-            return CONTENT_SUSPICIOUS
-        else:
-            return CONTENT_GOOD
+    # if sdhash == -1:
+    #     if not virus_check_file(file_path):
+    #         return CONTENT_SUSPICIOUS
+    #     else:
+    #         return CONTENT_GOOD
     if record == None:
         if not virus_check_file(file_path):
             return CONTENT_SUSPICIOUS
