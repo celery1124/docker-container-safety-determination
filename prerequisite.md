@@ -115,7 +115,7 @@ $ dockerd &
 ### Installation
 
 ```shell
-$ sudo apt-get install clamAV clamav-daemon
+$ sudo apt-get install clamav clamav-daemon
 ```
 
 
