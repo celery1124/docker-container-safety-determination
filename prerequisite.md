@@ -44,7 +44,7 @@ Run `sudo python -m pip install pymongo`
 ### Create db and collection
 
 
-In mongo shell,
+In mongo shell, create DB needed for this application.
 
 - Create db: `use sdhash_db`
 - Create collection: `db.createCollection("good_files")`
@@ -95,24 +95,11 @@ $ dockerd &
 ```
 
 
-### Launch Registry
-
-
-1. `cd registry/`
-2. `docker-compose up`
-
-
-### Launch Endpoint
-
-
-1. `cd endpoint`
-2. `python endpoint.py`
-
-
 ## ClamAV
 
 
 ### Installation
+
 
 ```shell
 $ sudo apt-get install clamav clamav-daemon
