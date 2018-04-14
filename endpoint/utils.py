@@ -1,5 +1,5 @@
 import subprocess as sub
-
+import os
 def get_image_name(js):
 	pushed = []
 	for event in js['events']:
