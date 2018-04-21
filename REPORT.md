@@ -368,24 +368,24 @@ The results can be shown in a web page as Fig. {@fig:results}.
 The client side or production environment side service provide a background scanner to check the running container regularly and kill/remove the malicious containers/images. The motivation here is when deploy the containers in the production environments, after pulling the image from our private registry, the image may be modified (build as new image in the client side) with malicious files and runs. The example here demonstrates how this is prevented by our background scanner.
 
 
-First, on the production environment pull the non-malicious image **hello** and re-build with some malware file in the new image **mian:v1** as below.
+First, on the production environment pull the non-malicious image **hello** and re-build with some malware file in the new image **mian:v1** as fig.{@fig:pull_build}.demonstrates.
 
 
-![pull and build malicious image](./pic/client/pull_and_build_malicious_image.PNG){#fig:pull&build}
+![pull and build malicious image](./pic/client/pull_and_build_malicious_image.PNG){#fig:pull_build}
 
 
-Then, we run two containers with the malicious image, see the images and running containers below.
+Then, we run two containers with the malicious image, see the images and running containers in fig.{@fig:list_before}.
 
 
 ![list container and image](./pic/client/list_container_image_before.PNG){#fig:list_before}
 
 
-Meanwhile, we have already started our background scanner and here is the output of our backgrounder scanner. It will capture the malicious containers and delete the malicious container as well as the malicious images.
+Meanwhile, we have already started our background scanner and here is the output of our backgrounder scanner. It will capture the malicious containers and delete the malicious container as well as the malicious images as fig.{@fig:scanner_result} shows
 
 ![background scanner results](./pic/client/scanner_log.PNG){#fig:scanner_result}
 
 
-Finally, we list the containers and the images in the machine and we can see that the malicious containers and images are deleted. Only the safe containers are still exist.
+Finally, we list the containers and the images in the machine and we can see that the malicious containers and images are deleted. Only the safe containers are still exist. See fig.{@fig:list_after}
 
 ![list containers and image again](./pic/client/list_container_image_after.PNG){#fig:list_after}
 
