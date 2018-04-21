@@ -60,7 +60,7 @@ def main():
 			commands.getoutput("rm " + temp_filename)
 			commands.getoutput("rm -r " + temp_dir)
 		if malware_flag == False:
-			time_print("no malicious image found")
+			time_print("no malicious container/image found")
 
 		# scan every 10 minutes
 		time.sleep(1*60)

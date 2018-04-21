@@ -8,7 +8,7 @@ see the reference link for **RUN** and **CMD** command.
 
 build command:  
 ```shell
-$ docker build -t mian:v1 .
+$ docker build -t mian:v1 docker_build_dir
 ```
 
 ## Docker push  
