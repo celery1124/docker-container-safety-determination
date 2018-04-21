@@ -142,7 +142,7 @@ Add below to the configuration file::
 
 ```
 {
-"insecure-registries": ["ip:port"]
+"insecure-registries": ["REGISTRY_IP:REGISTRY_PORT"]
 }
 ```
 
@@ -295,10 +295,40 @@ $ docker save -o a.tar container_name:version_tag
 Push results can be viewed through browser at `REGISTRY_IP:WEB_PORT/results`. Successful pushes are marked with OK. Failed pushes lists those suspicious files.
 
 
-## An example
+## Example
+
+
+### Registry side
+
+
+The endpoint is able to recognize the name, url of the images once a new image is pushed. Afterwards, the images are pulled and saved as compressed files as shown in Fig. {@fig:pull_save_tar}. Further, the safety check will examine the pushed images.
+
+
+![pulling images](./pic/pull_save_tar.jpeg){#fig:pull_save_tar}
+
+
+The Fig. {@fig:check_delete} above shows the logs coming from the safety check. It also prints out the number of bad files and the name of the suspicious files in the image. Once a suspicious image is detected, the endpoint implements deletion which removes the suspicious images from private registry.
+
+
+![safety check](./pic/check_delete.jpeg){#fig:check_delete}
+
+
+Fig. {@fig:pull_delete_json} show the printed JSON in the notification. It lists the two operations conducted on endpoint after a new image is pushed into the registry, one is pulling the image for safety check, another one following is the deletion once a malware is detected.
+
+
+![json examples](./pic/pull_delete_json.jpeg){#fig:pull_delete_json}
+
+
+The results can be shown in a web page as Fig. {@fig:results}.
+
+
+![web result](./pic/results.png){#fig:results}
 
 
 ## Conclusion
+
+
+In this project, we learnt various basic operations on Docker, such as building images, extracting images, etc. Besides, we learn to manage and configure the private registry, including manipulating the endpoint and notifications in registry. Surprisingly, docker registry has limitation from the perspective of maximizing the waiting time for endpoint. Registry will constantly send notifications to endpoint as long as it doesn’t hear anything back from endpoint in a period of time, which is a short duration. It limits our safety check on relatively small images instead of large images, such as ubuntu. Because it takes a while for endpoint to respond to registry in order to check the safety of large images.
 
 
 ## Reference
