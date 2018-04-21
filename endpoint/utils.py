@@ -1,5 +1,7 @@
 import subprocess as sub
 import os
+import constants
+
 def get_image_name(js):
 	pushed, names, digests = [], [], []
 	for event in js['events']:
@@ -57,6 +59,6 @@ def delete_malwares(malwares):
 	for m in malwares:
 		name=m[0]
 		digest=m[1]
-		cmd=['curl', '-X', 'DELETE', '159.65.238.188:5001/v2/'+name+'/manifests/'+digest]
+		cmd=['curl', '-X', 'DELETE', REGISTRY_IP + ":"  + REGISTRY_PORT + '/v2/'+name+'/manifests/'+digest]
 		print(cmd)
 		sub.call(cmd, stdout=sub.PIPE, stderr=sub.PIPE)

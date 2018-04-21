@@ -6,7 +6,7 @@ import utils
 import os
 import global_check
 import read_write_log
-
+import constants
 
 app = Flask(__name__)
 
@@ -49,4 +49,4 @@ def index():
     return 'welcome'
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5005)
+    app.run(debug=True, host='0.0.0.0', port=WEB_PORT)

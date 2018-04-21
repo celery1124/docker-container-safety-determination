@@ -26,6 +26,17 @@ See [prerequisites](./prerequisite.md) for details.
 3. Start clamAV: `$ sudo service clamav-daemon start`
 
 
+### Specify IP and PORT
+
+
+In `endpoint/constants.py`, specify following fields with respect to your server. Also change `notification:endpoint:url` field in `registry/config.yml` to be `http://REGISTRY_IP:WEB_PORT/check_image`.
+
+
+- `REGISTRY_IP`
+- `REGISTRY_PORT`
+- `WEB_PORT`
+
+
 ### Launch Registry
 
 
@@ -75,7 +86,7 @@ Add below to the configuration file:
 
 ```
 {
-"insecure-registries": ["ip:port"]
+"insecure-registries": ["REGISTRY_IP:REGISTRY_PORT"]
 }
 ```
 
@@ -95,9 +106,10 @@ Here is a [reference](https://github.com/docker/distribution/issues/1874).
 
 
 ```shell
-$ docker tag image_name:tag 159.65.238.188:5001/container_name
-$ docker push 159.65.238.188:5001/container_name
+$ docker tag image_name:tag REGISTRY_IP:REGISTRY_PORT/container_name
+$ docker push REGISTRY_IP:REGISTRY_PORT/container_name
 ```
+
 
 ### Docker save image
 
@@ -105,3 +117,9 @@ $ docker push 159.65.238.188:5001/container_name
 ```shell
 $ docker save -o a.tar container_name:version_tag
 ```
+
+
+## View push results
+
+
+Push results can be viewed through browser at `REGISTRY_IP:WEB_PORT/results`. Successful pushes are marked with OK. Failed pushes lists those suspicious files.
