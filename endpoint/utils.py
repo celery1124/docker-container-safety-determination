@@ -1,20 +1,23 @@
 import subprocess as sub
 import os
 def get_image_name(js):
-	pushed = []
+	pushed, names, digests = [], [], []
 	for event in js['events']:
 		if event['action'] == 'push':
 			repo=event['target']['repository']
 			print(repo)
 			url=event['request']['host']
 			print(url)
+			digest=event['target']['digest']
 			#tag=event['target']['tag']
 			#print(tag)
 			#path=url+'/'+repo+':'+tag
 			path=url+'/'+repo
 			print(path)
 			pushed.append(path)
-	return pushed
+			names.append(repo)
+			digests.append(digest)
+	return pushed, names, digests
 
 def pull_image(p):
 	print('pulling images....')
@@ -47,3 +50,13 @@ def untar_image(p):
 				untar_layer=['tar', '-xvf', os.path.join(root, name), '-C', 'test/']
 				print(untar_layer)
 				sub.call(untar_layer, stdout=sub.PIPE, stderr=sub.PIPE)
+
+def delete_malwares(malwares):
+	if len(malwares) != 0:
+		print('deleting malwares....')
+	for m in malwares:
+		name=m[0]
+		digest=m[1]
+		cmd=['curl', '-X', 'DELETE', '159.65.238.188:5001/v2/'+name+'/manifests/'+digest]
+		print(cmd)
+		sub.call(cmd, stdout=sub.PIPE, stderr=sub.PIPE)

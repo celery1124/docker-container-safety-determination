@@ -14,8 +14,10 @@ app = Flask(__name__)
 def check_image():
     data = json.loads(request.data)
     print(data)
-    paths = utils.get_image_name(data)
-    for p in paths:
+    paths, names, digests = utils.get_image_name(data)
+    malwares = []
+    for i in range(len(paths)):
+        p=paths[i]
         utils.pull_image(p)
         utils.save_image(p)
         utils.untar_image(p)
@@ -31,9 +33,11 @@ def check_image():
         print('-------------------')
         print('num_bad_files: %d' %(num_bad_files))
         print('suspicious_file_paths_list: %s' %(suspicious_file_paths_list))
-
+        if num_bad_files != 0:
+            malwares.append((names[i], digests[i]))
         # write line into log
         read_write_log.write_log(p, num_bad_files, suspicious_file_paths_list)
+    utils.delete_malwares(malwares)
     return 'Done'
 
 @app.route('/results', methods=['GET'])
