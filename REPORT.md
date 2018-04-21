@@ -325,6 +325,34 @@ The results can be shown in a web page as Fig. {@fig:results}.
 ![web result](./pic/results.png){#fig:results}
 
 
+### Client side (production environment)
+
+
+The client side or production environment side service provide a background scanner to check the running container regularly and kill/remove the malicious containers/images. The motivation here is when deploy the containers in the production environments, after pulling the image from our private registry, the image may be modified (build as new image in the client side) with malicious files and runs. The example here demonstrates how this is prevented by our background scanner.
+
+
+First, on the production environment pull the non-malicious image **hello** and re-build with some malware file in the new image **mian:v1** as below.
+
+
+![pull and build malicious image](./pic/client/pull_and_build_malicious_image.PNG){#fig:pull&build}
+
+
+Then, we run two containers with the malicious image, see the images and running containers below.
+
+
+![list container and image](./pic/client/list_container_image_before.PNG){#fig:list_before}
+
+
+Meanwile, we have already started our background scanner and here is the output of our backgrounder scanner. It will capture the malicious containers and delete the malicious container as well as the malicious images.
+
+![background scanner results](./pic/client/scanner_log.PNG){#fig:scanner_result}
+
+
+Finally, we list the containers and the images in the machine and we can see that the malicious containers and images are deleted. Only the safe containers are still exist.
+
+![list containers and image again](./pic/client/list_container_image_after.PNG){#fig:list_after}
+
+
 ## Conclusion
 
 
