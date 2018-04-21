@@ -105,3 +105,9 @@ $ docker push 159.65.238.188:5001/container_name
 ```shell
 $ docker save -o a.tar container_name:version_tag
 ```
+
+
+## View push results
+
+
+Push results can be viewed through browser at `server_ip:web_port/results`. Substitute the ip and port field with your server info.

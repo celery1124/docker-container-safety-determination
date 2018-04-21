@@ -28,7 +28,7 @@ def global_process_files(_file_paths_list):
             num_bad_files += 1
             print("One file may be virus")
     return num_bad_files, suspicious_file_paths_list
-            
+
 def compare_sdhash_values(_in1, _in2):
     return _in1 == _in2
     
@@ -67,8 +67,6 @@ def global_check_file(file_name_with_ext, sdhash, file_path):
 def test():
     test_files = ["/home/ubuntu/workspace/container-safety-determination/proposal.md", "/home/ubuntu/workspace/container-safety-determination/test/test1.md", "/home/ubuntu/workspace/container-safety-determination/test/test1/test1.md", "/home/ubuntu/workspace/container-safety-determination/test/test1/test2.md", "/home/ubuntu/workspace/container-safety-determination/test/test2/test1.md"]
     num, suspicious_file_paths_list = global_process_files(test_files)
-    
-
 
 
 if __name__ == "__main__":
