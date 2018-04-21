@@ -5,6 +5,8 @@ import json
 import utils
 import os
 import global_check
+import read_write_log
+
 
 app = Flask(__name__)
 
@@ -29,7 +31,14 @@ def check_image():
         print('-------------------')
         print('num_bad_files: %d' %(num_bad_files))
         print('suspicious_file_paths_list: %s' %(suspicious_file_paths_list))
+
+        # write line into log
+        read_write_log.write_log(p, num_bad_files, suspicious_file_paths_list)
     return 'Done'
+
+@app.route('/results', methods=['GET'])
+def results():
+    return read_write_log.read_log()
 
 @app.route('/')
 def index():
