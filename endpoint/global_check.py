@@ -8,7 +8,7 @@ CONTENT_SUSPICIOUS = 2
 
 files_sdhashs = connectMongo()
 
-md = clamav();
+md = clamav()
 
 def virus_check_file(file_path):
 	ret = md.scan_file(file_path)
