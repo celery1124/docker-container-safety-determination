@@ -1,0 +1,2 @@
+<h1> Registry push results: </h1>
+<hr>
