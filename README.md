@@ -62,6 +62,8 @@ $ python background_scanner.py
 ```
 
 ### Dokcer pull image from private registry
+
+
 ```shell
 $ docker pull REGISTRY_IP:REGISTRY_PORT/image_name
 ```
