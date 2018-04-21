@@ -54,7 +54,19 @@ In `endpoint/constants.py`, specify following fields with respect to your server
 ## On client side
 
 
-### Docker build container
+### Run background_scanner
+
+
+```shell
+$ python background_scanner.py
+```
+
+### Dokcer pull image from private registry
+```shell
+$ docker pull REGISTRY_IP:REGISTRY_PORT/image_name
+```
+
+### Docker build image
 
 
 1. See [this link](https://docs.docker.com/engine/reference/builder/#escape)  
@@ -64,10 +76,10 @@ In `endpoint/constants.py`, specify following fields with respect to your server
 
 
 ```shell
-$ docker build -t your_container_name:version_tag .
+$ docker build -t your_container_name:version_tag dir.
 ```
 
-### Docker push container
+### Docker push image
 
 
 #### Enable push to insecure registry  
@@ -107,7 +119,7 @@ Here is a [reference](https://github.com/docker/distribution/issues/1874).
 
 ```shell
 $ docker tag image_name:tag REGISTRY_IP:REGISTRY_PORT/container_name
-$ docker push REGISTRY_IP:REGISTRY_PORT/container_name
+$ docker push REGISTRY_IP:REGISTRY_PORT/image_name
 ```
 
 
@@ -116,6 +128,29 @@ $ docker push REGISTRY_IP:REGISTRY_PORT/container_name
 
 ```shell
 $ docker save -o a.tar container_name:version_tag
+```
+
+
+### Docker run container
+
+
+```shell
+$ docker run image_name:tag
+```
+
+### Docker list all containers
+
+
+```shell
+$ docker ps -a
+```
+
+
+### Docker list all images
+
+
+```shell
+$ docker image ls
 ```
 
 
