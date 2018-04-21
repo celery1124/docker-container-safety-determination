@@ -59,6 +59,6 @@ def delete_malwares(malwares):
 	for m in malwares:
 		name=m[0]
 		digest=m[1]
-		cmd=['curl', '-X', 'DELETE', REGISTRY_IP + ":"  + REGISTRY_PORT + '/v2/'+name+'/manifests/'+digest]
+		cmd=['curl', '-X', 'DELETE', constants.REGISTRY_IP + ":"  + constants.REGISTRY_PORT + '/v2/'+name+'/manifests/'+digest]
 		print(cmd)
 		sub.call(cmd, stdout=sub.PIPE, stderr=sub.PIPE)
