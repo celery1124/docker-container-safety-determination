@@ -58,6 +58,7 @@ In `endpoint/constants.py`, specify following fields with respect to your server
 
 
 ```shell
+$ cd client
 $ python background_scanner.py
 ```
 
