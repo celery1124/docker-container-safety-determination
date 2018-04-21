@@ -49,4 +49,4 @@ def index():
     return 'welcome'
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=WEB_PORT)
+    app.run(debug=True, host='0.0.0.0', port=constants.WEB_PORT)
