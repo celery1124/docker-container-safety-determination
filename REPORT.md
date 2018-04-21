@@ -228,6 +228,7 @@ In `endpoint/constants.py`, specify following fields with respect to your server
 
 
 ```shell
+$ cd client
 $ python background_scanner.py
 ```
 
@@ -394,6 +395,9 @@ Finally, we list the containers and the images in the machine and we can see tha
 
 
 In this project, we learnt various basic operations on Docker, such as building images, extracting images, etc. Besides, we learn to manage and configure the private registry, including manipulating the endpoint and notifications in registry. Surprisingly, docker registry has limitation from the perspective of maximizing the waiting time for endpoint. Registry will constantly send notifications to endpoint as long as it doesn’t hear anything back from endpoint in a period of time, which is a short duration. It limits our safety check on relatively small images instead of large images, such as ubuntu. Because it takes a while for endpoint to respond to registry in order to check the safety of large images.
+
+
+It is also a great experience working in a group. Teamwork is indeed powerful and enable us to turn our naive idea into real product. Meanwhile, what we have learnt in class is quite useful. The idea using caching to provide more efficient services inspired us to adopt this technique in order to improve the efficiency of the virus checking. This final version of program can help both Docker registry owner and client to keep away from malicious files.
 
 
 ## Reference
