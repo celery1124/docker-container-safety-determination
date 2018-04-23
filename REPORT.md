@@ -54,6 +54,8 @@ This is a service associated with a docker registry that can inspect pushed dock
 5. Once we have a newly pushed image, the program will download and untar it into a local directory then do virus checking on all files there. 
 6. If an image is detected as suspicious, the program will delete it in the registry.
 7. The results can be shown in browser with the help of flask server.
+8. In the client side or production environment. A background service that monitoring the running containers.
+9. If there's malware found in the container, it will delete the related containers as well as the docker images and also printing the log into the console.
 
 
 ## Prerequisite
@@ -393,6 +395,8 @@ Finally, we list the containers and the images in the machine and we can see tha
 
 ## Conclusion
 
+
+In this project, we implement a prototype software for security purpose of the workflow of the docker container. In the registry side, it will check all the images pushed by the developer and remove the docker images with security vulnerability and notify the developer with the malicious files. In the production environment side where docker containers are actually running, it will constantly scan the running containers and delete the containers and related images with security issues. The whole solution will help get rid of the security holes in the workflow of development and deployment of applications using docker,
 
 In this project, we learnt various basic operations on Docker, such as building images, extracting images, etc. Besides, we learn to manage and configure the private registry, including manipulating the endpoint and notifications in registry. Surprisingly, docker registry has limitation from the perspective of maximizing the waiting time for endpoint. Registry will constantly send notifications to endpoint as long as it doesn’t hear anything back from endpoint in a period of time, which is a short duration. It limits our safety check on relatively small images instead of large images, such as ubuntu. Because it takes a while for endpoint to respond to registry in order to check the safety of large images.
 
